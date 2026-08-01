@@ -1,12 +1,16 @@
+using MyFirstApi.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Custom Middleware
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Configure HTTP request pipeline
 if (app.Environment.IsDevelopment())
